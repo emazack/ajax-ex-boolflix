@@ -1,7 +1,21 @@
-// la mia API
-// https://api.themoviedb.org/3/movie/550?api_key=e378742730fc784d9e5410ffaa7cd73e
 
 $(document).ready(function(){
+
+  $("#bottone-ricerca").click(
+    function(){
+      $.ajax({
+        url : "https://api.themoviedb.org/3/movie/550?api_key=e378742730fc784d9e5410ffaa7cd73e",
+        method : "GET",
+        success: function (data,stato) {
+
+        },
+        error : function (richiesta, stato, errore) {
+          // quello che succede se c'è un errore. Ex:
+          alert("E' avvenuto un errore. " + errore);
+        }
+      });
+    }
+  );
 
   // // gestione Handlebars:
   // // Prendo quello che è contenuto nello script selezionandolo tramite id
