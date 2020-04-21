@@ -1,3 +1,6 @@
+// la mia API
+// https://api.themoviedb.org/3/movie/550?api_key=e378742730fc784d9e5410ffaa7cd73e
+
 $(document).ready(function(){
 
   // // gestione Handlebars:

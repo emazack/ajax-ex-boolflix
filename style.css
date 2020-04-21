@@ -8,3 +8,29 @@ html{
   overflow: hidden;
   height: 100%;
 }
+
+/********** HEADER **********/
+
+header{
+  display: flex;
+  background-color: black;
+  height: 10vh;
+}
+
+.hdestra{
+  display: flex;
+  justify-content: flex-end;
+  width: 50%;
+}
+
+.hsinistra{
+  width: 50%;
+  height: 100%;
+}
+
+/*********** MAIN **********/
+
+main{
+  background-color: darkgrey;
+  height: 90vh;
+}
