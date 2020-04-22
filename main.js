@@ -20,8 +20,7 @@ $(document).ready(function(){
         success: function (data,stato) {
           var risultati = data.results;
           generaRicerca(risultati, "movie");
-          var html = template(context);
-          $("main").append(html);
+
         },
         error : function (richiesta, stato, errore) {
           // quello che succede se c'è un errore. Ex:
@@ -41,8 +40,7 @@ $(document).ready(function(){
         success: function (data,stato) {
           var risultati = data.results;
           generaRicerca(risultati, "tv");
-          var html = template(context);
-          $("main").append(html);
+
         },
         error : function (richiesta, stato, errore) {
           // quello che succede se c'è un errore. Ex:
@@ -51,7 +49,7 @@ $(document).ready(function(){
 
       });
 
-    };
+    }
 
   );
 
