@@ -41,3 +41,7 @@ main{
 .film{
 
 }
+
+span img{
+  max-width: 17px;
+}

@@ -29,11 +29,25 @@ var template = Handlebars.compile(source);
           for (var i = 0; i < risultati.length; i++) {
             // trasformo in voto in numero e lo divido per 2 e dopo lo arrotondo al numero più vicino
             var votoStellina = Math.round( ( parseInt( risultati[i]["vote_average"] ) / 2 ) );
+            // sistema di sostituzione di numero con stellina piena
+            if (votoStellina == 1) {
+              votoStellina = "<img src='img/stellapiena.png' alt='Stellina'>"
+            } else if (votoStellina == 2){
+              votoStellina = "<img src='img/stellapiena.png' alt='Stellina'><img src='img/stellapiena.png' alt='Stellina'>' alt='Stellina'>"
+            } else if (votoStellina == 3){
+              votoStellina = "<img src='img/stellapiena.png' alt='Stellina'><img src='img/stellapiena.png' alt='Stellina'><img src='img/stellapiena.png' alt='Stellina'>"
+            } else if (votoStellina == 4){
+              votoStellina = "<img src='img/stellapiena.png' alt='Stellina'><img src='img/stellapiena.png' alt='Stellina'><img src='img/stellapiena.png' alt='Stellina'><img src='img/stellapiena.png' alt='Stellina'>"
+            } else if (votoStellina == 5){
+              votoStellina = "<img src='img/stellapiena.png' alt='Stellina'><img src='img/stellapiena.png' alt='Stellina'><img src='img/stellapiena.png' alt='Stellina'><img src='img/stellapiena.png' alt='Stellina'><img src='img/stellapiena.png' alt='Stellina'>"
+            } else if (votoStellina == 0){
+              votoStellina = "N/d"
+            }
             var context = {
               titolo: risultati[i]["title"],
               titolo_originale: risultati[i]["original_title"],
               lingua: risultati[i]["original_language"],
-              voto: votoStellina,
+              voto: votoStellina
             };
             var html = template(context);
             $("main").append(html);
