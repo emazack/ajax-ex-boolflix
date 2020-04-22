@@ -11,6 +11,8 @@ var template = Handlebars.compile(source);
   $("#bottone-ricerca").click(
 
     function(){
+      // Svuoto la pagina da risutati precedenti
+      $("main").html("")
       // prendi il valore che si trova in input
       var queryInserita = $(".hdestra input").val();
 
@@ -25,15 +27,16 @@ var template = Handlebars.compile(source);
         success: function (data,stato) {
           var risultati = data.results;
           for (var i = 0; i < risultati.length; i++) {
+            // trasformo in voto in numero e lo divido per 2 e dopo lo arrotondo al numero più vicino
+            var votoStellina = Math.round( ( parseInt( risultati[i]["vote_average"] ) / 2 ) );
             var context = {
               titolo: risultati[i]["title"],
               titolo_originale: risultati[i]["original_title"],
               lingua: risultati[i]["original_language"],
-              voto: risultati[i]["vote_average"],
+              voto: votoStellina,
             };
             var html = template(context);
             $("main").append(html);
-
           }
         },
         error : function (richiesta, stato, errore) {
