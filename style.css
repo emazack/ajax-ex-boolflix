@@ -2,6 +2,7 @@
   padding: 0;
   margin: 0;
   box-sizing: border-box;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif
 }
 
 html{
@@ -31,17 +32,24 @@ header{
 /*********** MAIN **********/
 
 main{
-  background-color: darkgrey;
+  background-color: #333333;
   height: 90vh;
   overflow-y: scroll;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
 }
 
 /********* TEMPLATE ***********/
 
 .film{
-
+  margin: 25px 0;
+  text-align: center;
+  color: white;
+  background-color: black;
 }
 
-span img{
-  max-width: 17px;
+#cover{
+  width: 500px;
+  height: 750px;
 }

@@ -68,7 +68,8 @@ $(document).ready(function(){
           titolo_originale: ArrayDiDati[i]["original_title"],
           lingua: flagGenerator(ArrayDiDati[i]["original_language"]),
           voto: votoInStelle(ArrayDiDati[i]["vote_average"]),
-          tipo: type
+          tipo: type,
+          cover: generaCover(ArrayDiDati[i]["poster_path"])
         };
         var html = template(context);
         $("main").append(html);
@@ -82,7 +83,8 @@ $(document).ready(function(){
           titolo_originale: ArrayDiDati[i]["original_name"],
           lingua: flagGenerator(ArrayDiDati[i]["original_language"]),
           voto: votoInStelle(ArrayDiDati[i]["vote_average"]),
-          tipo: type
+          tipo: type,
+          cover: generaCover(ArrayDiDati[i]["poster_path"])
         };
         var html = template(context);
         $("main").append(html);
@@ -122,6 +124,18 @@ $(document).ready(function(){
       return imgGenerata;
     }
     return codiceLanguage;
+  }
+
+  // funzione per inserire l'immagine copertina dello show/film
+
+  function generaCover(endpointCover) {
+    if (endpointCover != null) {
+      endpointCover = "https://image.tmdb.org/t/p/w500/" + endpointCover
+      return endpointCover;
+    } else if (endpointCover === null) {
+      endpointCover = "img/black.jpg";
+      return endpointCover;
+    }
   }
 
 }); // fine document ready
