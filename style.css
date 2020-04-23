@@ -67,3 +67,7 @@ main{
   width: 500px;
   height: 750px;
 }
+
+span{
+  font-weight: lighter;
+}
