@@ -10,46 +10,9 @@ $(document).ready(function(){
       // prendi il valore che si trova in input
       var queryInserita = $(".hdestra input").val();
       // prima chiama ajax per i film
-      $.ajax({
-        url : "https://api.themoviedb.org/3/search/movie",
-        data: {
-          api_key: "e99307154c6dfb0b4750f6603256716d",
-          language: "it-IT",
-          query: queryInserita
-        },
-        method : "GET",
-        success: function (data,stato) {
-          var risultati = data.results;
-          generaRicerca(risultati, "movie");
-
-        },
-        error : function (richiesta, stato, errore) {
-          // quello che succede se c'è un errore. Ex:
-          alert("E' avvenuto un errore. " + errore);
-        }
-
-      });
+      chiamataAjax("movie" , queryInserita, "it-IT");
       // seconda chiamata ajax per show tv
-      $.ajax({
-        url : "https://api.themoviedb.org/3/search/tv",
-        data: {
-          api_key: "e99307154c6dfb0b4750f6603256716d",
-          language: "it-IT",
-          query: queryInserita
-        },
-        method : "GET",
-        success: function (data,stato) {
-          var risultati = data.results;
-          generaRicerca(risultati, "tv");
-
-        },
-        error : function (richiesta, stato, errore) {
-          // quello che succede se c'è un errore. Ex:
-          alert("E' avvenuto un errore. " + errore);
-        }
-
-      }); //fine chiamata ajax
-
+      chiamataAjax("tv" , queryInserita, "it-IT");
     } // fine funzione dentro click
 
   ); // fine click
@@ -57,6 +20,32 @@ $(document).ready(function(){
 
 
   //////////////// FUNZIONI /////////////////
+
+  // funzione per fare una chiamata ajax ed interrogare la API
+
+  function chiamataAjax(type , queryParamenter, languageParameter) {
+
+    $.ajax({
+      url : "https://api.themoviedb.org/3/search/" + type,
+      data: {
+        api_key: "e99307154c6dfb0b4750f6603256716d",
+        language: languageParameter,
+        query: queryParamenter
+      },
+      method : "GET",
+      success: function (data,stato) {
+        var risultati = data.results;
+        generaRicerca(risultati, type);
+
+      },
+      error : function (richiesta, stato, errore) {
+        // quello che succede se c'è un errore. Ex:
+        alert("E' avvenuto un errore. " + errore);
+      }
+
+    });
+
+  }
 
   // fuzione per generare il risultato della ricerca di movie e tv
 
