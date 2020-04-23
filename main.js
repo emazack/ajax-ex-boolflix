@@ -9,6 +9,7 @@ $(document).ready(function(){
       $("main").html("");
       // prendi il valore che si trova in input
       var queryInserita = $(".hdestra input").val();
+      // prima chiama ajax per i film
       $.ajax({
         url : "https://api.themoviedb.org/3/search/movie",
         data: {
@@ -28,7 +29,7 @@ $(document).ready(function(){
         }
 
       });
-      //
+      // seconda chiamata ajax per show tv
       $.ajax({
         url : "https://api.themoviedb.org/3/search/tv",
         data: {
@@ -47,15 +48,18 @@ $(document).ready(function(){
           alert("E' avvenuto un errore. " + errore);
         }
 
-      });
+      }); //fine chiamata ajax
 
-    }
+    } // fine funzione dentro click
 
-  );
+  ); // fine click
 
 
 
-  // funzioni //
+  //////////////// FUNZIONI /////////////////
+
+  // fuzione per generare il risultato della ricerca di movie e tv
+
   function generaRicerca(ArrayDiDati, type) {
     if (type == "movie") {
       for (var i = 0; i < ArrayDiDati.length; i++) {
@@ -90,7 +94,7 @@ $(document).ready(function(){
   }; // fine funzione generaRicerca
 
 
-  // funzione
+  // funzione per generare un voto in stelle in base 5 partendo da una base 10
 
   function votoInStelle(valutazioneBaseDieci) {
     var votoBase5 = Math.round( ( parseInt( valutazioneBaseDieci ) / 2 ) );
@@ -107,7 +111,7 @@ $(document).ready(function(){
   }; // fine funzione voto in stelle
 
 
-  // funzione
+  // funzione per generare la bandiera in base alla nazione
 
   function flagGenerator(codiceLanguage) {
     images = ["it" , "en" , "de" , "es"];
