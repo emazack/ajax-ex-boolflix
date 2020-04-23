@@ -24,10 +24,24 @@ header{
   width: 50%;
 }
 
+.hdestra input, #bottone-ricerca{
+  height: 50%;
+  align-self: center;
+  margin: 15px 5px;
+  padding: 10px;
+  border-radius: 20px;
+  outline: none;
+}
+
+#bottone-ricerca{
+  background-color: red;
+}
+
 .hsinistra{
   width: 50%;
   height: 100%;
 }
+
 
 /*********** MAIN **********/
 
