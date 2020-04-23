@@ -59,27 +59,12 @@ $(document).ready(function(){
   function generaRicerca(ArrayDiDati, type) {
     if (type == "movie") {
       for (var i = 0; i < ArrayDiDati.length; i++) {
-        // trasformo in voto in numero e lo divido per 2 e dopo lo arrotondo al numero più vicino
-        var votoStellina = Math.round( ( parseInt( ArrayDiDati[i]["vote_average"] ) / 2 ) );
-        // sistema di sostituzione di numero con stellina piena
-        if (votoStellina == 1) {
-          votoStellina = "<img src='img/stellapiena.png' alt='Stellina'>"
-        } else if (votoStellina == 2){
-          votoStellina = "<img src='img/stellapiena.png' alt='Stellina'><img src='img/stellapiena.png' alt='Stellina'>"
-        } else if (votoStellina == 3){
-          votoStellina = "<img src='img/stellapiena.png' alt='Stellina'><img src='img/stellapiena.png' alt='Stellina'><img src='img/stellapiena.png' alt='Stellina'>"
-        } else if (votoStellina == 4){
-          votoStellina = "<img src='img/stellapiena.png' alt='Stellina'><img src='img/stellapiena.png' alt='Stellina'><img src='img/stellapiena.png' alt='Stellina'><img src='img/stellapiena.png' alt='Stellina'>"
-        } else if (votoStellina == 5){
-          votoStellina = "<img src='img/stellapiena.png' alt='Stellina'><img src='img/stellapiena.png' alt='Stellina'><img src='img/stellapiena.png' alt='Stellina'><img src='img/stellapiena.png' alt='Stellina'><img src='img/stellapiena.png' alt='Stellina'>"
-        } else if (votoStellina == 0){
-          votoStellina = "N/d"
-        }
         var context = {
           titolo: ArrayDiDati[i]["title"],
           titolo_originale: ArrayDiDati[i]["original_title"],
-          lingua: ArrayDiDati[i]["original_language"],
-          voto: votoStellina
+          lingua: flagGenerator(ArrayDiDati[i]["original_language"]),
+          voto: votoInStelle(ArrayDiDati[i]["vote_average"]),
+          tipo: type
         };
         var html = template(context);
         $("main").append(html);
@@ -88,27 +73,12 @@ $(document).ready(function(){
 
     } else if (type =="tv") {
       for (var i = 0; i < ArrayDiDati.length; i++) {
-        // trasformo in voto in numero e lo divido per 2 e dopo lo arrotondo al numero più vicino
-        var votoStellina = Math.round( ( parseInt( ArrayDiDati[i]["vote_average"] ) / 2 ) );
-        // sistema di sostituzione di numero con stellina piena
-        if (votoStellina == 1) {
-          votoStellina = "<img src='img/stellapiena.png' alt='Stellina'>"
-        } else if (votoStellina == 2){
-          votoStellina = "<img src='img/stellapiena.png' alt='Stellina'><img src='img/stellapiena.png' alt='Stellina'>"
-        } else if (votoStellina == 3){
-          votoStellina = "<img src='img/stellapiena.png' alt='Stellina'><img src='img/stellapiena.png' alt='Stellina'><img src='img/stellapiena.png' alt='Stellina'>"
-        } else if (votoStellina == 4){
-          votoStellina = "<img src='img/stellapiena.png' alt='Stellina'><img src='img/stellapiena.png' alt='Stellina'><img src='img/stellapiena.png' alt='Stellina'><img src='img/stellapiena.png' alt='Stellina'>"
-        } else if (votoStellina == 5){
-          votoStellina = "<img src='img/stellapiena.png' alt='Stellina'><img src='img/stellapiena.png' alt='Stellina'><img src='img/stellapiena.png' alt='Stellina'><img src='img/stellapiena.png' alt='Stellina'><img src='img/stellapiena.png' alt='Stellina'>"
-        } else if (votoStellina == 0){
-          votoStellina = "N/d"
-        }
         var context = {
           titolo: ArrayDiDati[i]["name"],
           titolo_originale: ArrayDiDati[i]["original_name"],
-          lingua: ArrayDiDati[i]["original_language"],
-          voto: votoStellina
+          lingua: flagGenerator(ArrayDiDati[i]["original_language"]),
+          voto: votoInStelle(ArrayDiDati[i]["vote_average"]),
+          tipo: type
         };
         var html = template(context);
         $("main").append(html);
@@ -118,5 +88,36 @@ $(document).ready(function(){
     } //fine else if
 
   }; // fine funzione generaRicerca
+
+
+  // funzione
+
+  function votoInStelle(valutazioneBaseDieci) {
+    var votoBase5 = Math.round( ( parseInt( valutazioneBaseDieci ) / 2 ) );
+    var stelle = "";
+    for (var i = 1; i <= 5 ; i++) {
+      if (i <= votoBase5) {
+        stelle += "★";
+      } else {
+        stelle += "☆";
+      }
+
+    };
+    return stelle;
+  }; // fine funzione voto in stelle
+
+
+  // funzione
+
+  function flagGenerator(codiceLanguage) {
+    images = ["it" , "en" , "de" , "es"];
+    var imgGenerata;
+
+    if(images.includes(codiceLanguage)) {
+      imgGenerata = '<img src="img/' + codiceLanguage + '.png" alt="immagine" class="flags" >';
+      return imgGenerata;
+    }
+    return codiceLanguage;
+  }
 
 }); // fine document ready
