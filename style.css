@@ -57,9 +57,25 @@ main{
 /********* TEMPLATE ***********/
 
 .film{
+  display: flex;
+  justify-content: flex-start;
   margin: 25px 0;
-  text-align: center;
   color: white;
+  background-color: black;
+  position: relative;
+}
+
+.descrizione{
+  position: absolute;
+  top: 0;
+  padding: 10px;
+  display: none;
+  height: 100%;
+  width: 100%;
+}
+
+#cover:hover + .descrizione{
+  display: block;
   background-color: black;
 }
 
@@ -67,6 +83,7 @@ main{
   width: 500px;
   height: 750px;
 }
+
 
 span{
   font-weight: lighter;
