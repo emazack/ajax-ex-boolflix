@@ -58,7 +58,8 @@ $(document).ready(function(){
           lingua: flagGenerator(ArrayDiDati[i]["original_language"]),
           voto: votoInStelle(ArrayDiDati[i]["vote_average"]),
           tipo: type,
-          cover: generaCover(ArrayDiDati[i]["poster_path"])
+          cover: generaCover(ArrayDiDati[i]["poster_path"]),
+          sinossi: generaSinossi(ArrayDiDati[i]["overview"])
         };
         var html = template(context);
         $("main").append(html);
@@ -73,7 +74,8 @@ $(document).ready(function(){
           lingua: flagGenerator(ArrayDiDati[i]["original_language"]),
           voto: votoInStelle(ArrayDiDati[i]["vote_average"]),
           tipo: type,
-          cover: generaCover(ArrayDiDati[i]["poster_path"])
+          cover: generaCover(ArrayDiDati[i]["poster_path"]),
+          sinossi: generaSinossi(ArrayDiDati[i]["overview"])
         };
         var html = template(context);
         $("main").append(html);
@@ -124,6 +126,17 @@ $(document).ready(function(){
     } else if (endpointCover === null) {
       endpointCover = "img/black.jpg";
       return endpointCover;
+    }
+  }
+
+  // funzione per inserire la sinossi dell'elemento ricercato
+
+  function generaSinossi(testoSinossi) {
+    if (testoSinossi == "") {
+      sinossiMancante = "Descrizione non disponibile"
+      return sinossiMancante;
+    } else {
+      return testoSinossi;
     }
   }
 
