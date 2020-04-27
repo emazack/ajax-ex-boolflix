@@ -3,6 +3,11 @@ $(document).ready(function(){
   var source = $("#template-film").html();
   var template = Handlebars.compile(source);
 
+
+
+
+  // faccio partire la ricerca al click
+
   $("#bottone-ricerca").click(
     function() {
       // cancello la pagina
@@ -16,6 +21,17 @@ $(document).ready(function(){
     } // fine funzione dentro click
 
   ); // fine click
+
+  // faccio partire la ricerca alla pressione del tasto enter
+
+  $("input").on('keypress',function(enter) {
+  if(enter.which == 13) {
+    $("main").html("");
+    var queryInserita = $(".hdestra input").val();
+    chiamataAjax("movie" , queryInserita, "it-IT");
+    chiamataAjax("tv" , queryInserita, "it-IT");
+  }
+});
 
 
 
